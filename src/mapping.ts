@@ -1,9 +1,14 @@
-import { BigInt } from "@graphprotocol/graph-ts"
+import { BigInt, log } from "@graphprotocol/graph-ts"
 import { DAI, Approval, LogNote, Transfer } from "../generated/DAI/DAI"
 import { ExampleEntity } from "../generated/schema"
 
+
 export function handleApproval(event: Approval): void {
-  console.log(JSON.stringify(event.params));
+  log.debug('Block number: {}, block hash: {}, transaction hash: {}', [
+    event.block.number.toString(), // "47596000"
+    event.block.hash.toHexString(), // "0x..."
+    event.transaction.hash.toHexString(), // "0x..."
+  ])
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ExampleEntity.load(event.transaction.from.toHex())
