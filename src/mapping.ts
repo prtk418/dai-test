@@ -3,6 +3,7 @@ import { DAI, Approval, LogNote, Transfer } from "../generated/DAI/DAI"
 import { ExampleEntity } from "../generated/schema"
 
 export function handleApproval(event: Approval): void {
+  console.log(`${event.params}`);
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ExampleEntity.load(event.transaction.from.toHex())
@@ -57,6 +58,10 @@ export function handleApproval(event: Approval): void {
   // - contract.wards(...)
 }
 
-export function handleLogNote(event: LogNote): void {}
+export function handleLogNote(event: LogNote): void {
+  // console.log(event.params);
+}
 
-export function handleTransfer(event: Transfer): void {}
+export function handleTransfer(event: Transfer): void {
+  // console.log(event.params);
+}
